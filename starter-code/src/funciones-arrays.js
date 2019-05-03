@@ -1,4 +1,12 @@
 // Find the maximum
+function maxOfTwoNumbers(n1,n2){
+    
+  if(n1>n2){
+    return n1;
+  }else{
+    return n2;
+  }
+};
 
 // Finding Longest Word
 let words = [
@@ -11,13 +19,25 @@ let words = [
   'crackpot'
 ];
 
+function findLongestWord(words){
+  words.length();
+}
 // Calculating a Sum
 
 let numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
+function sumArray(numbers){
+  numbers.reduce();
+}
 
 // Calculate the Average
-
+// como divido la suma anterior por ocho?
 let numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
+let divideNumbers = numbersAvg.reduce() / 8;
+function sumArray(numbersAvg){
+  numbersAvg.reduce() ;
+  
+}
+
 
 // Array of Strings
 let wordsArr = [
@@ -33,6 +53,9 @@ let wordsArr = [
   'palace'
 ];
 
+function averageWordLength(wordsArr){
+
+}
 // Unique Arrays
 let wordsUnique = [
   'crab',
