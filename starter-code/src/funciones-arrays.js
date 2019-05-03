@@ -26,17 +26,13 @@ function findLongestWord(words){
 
 let numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 function sumArray(numbers){
-  numbers.reduce();
+  numbers.reduce() / numbers.length();
+  
 }
 
 // Calculate the Average
 // como divido la suma anterior por ocho?
 let numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
-let divideNumbers = numbersAvg.reduce() / 8;
-function sumArray(numbersAvg){
-  numbersAvg.reduce() ;
-  
-}
 
 
 // Array of Strings
@@ -54,7 +50,7 @@ let wordsArr = [
 ];
 
 function averageWordLength(wordsArr){
-
+ 
 }
 // Unique Arrays
 let wordsUnique = [
