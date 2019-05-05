@@ -1,14 +1,14 @@
 // Find the maximum
 
 function maxOfTwoNumbers(num1,num2) {
-    let elmayor;
+  let elmayor;
 
-    if(num1 > num2)
-      elmayor = num1;
-    else 
-      elmayor = num2;
-  
-    return elmayor;
+  if(num1 > num2)
+    elmayor = num1;
+  else 
+    elmayor = num2;
+
+  return elmayor;
 }
 
 // Finding Longest Word
@@ -16,6 +16,7 @@ let words = [
   'mystery',
   'brother',
   'aviator',
+  'crocodile',
   'crocodile',
   'pearl',
   'orchard',
@@ -25,24 +26,36 @@ let words = [
 function findLongestWord(words) {
   words.sort(function(a, b) {
     if (a.length > b.length)
-      return 1;
-    if (a.length < b.length)
       return -1;
+    if (a.length < b.length)
+      return 1;
     return 0;
   })
 
-  return words[words.length-1];
+  return words[0];
 }
-
-console.log(findLongestWord(words));
 
 // Calculating a Sum
 
 let numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
+function sumArray(numbers) {
+  let reducer = (accumulator, currentValue) => accumulator + currentValue;
+  if (numbers.length == 0)
+      return 0;
+  else
+      return numbers.reduce(reducer);
+}
+
 // Calculate the Average
 
 let numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
+
+function averageNumbers(numbers) {
+  if (numbers.length == 0)
+    return ;
+  return sumArray(numbers)/numbers.length;
+}
 
 // Array of Strings
 let wordsArr = [
@@ -57,6 +70,17 @@ let wordsArr = [
   'fuel',
   'palace'
 ];
+
+function averageWordLength(words) {
+  let arrayLong = [words.length];
+
+  for (let i=0; i<words.length; i++)
+    arrayLong[i] = words[i].length;
+
+  if (words.length == 0)
+    return ;
+  return averageNumbers(arrayLong);
+}
 
 // Unique Arrays
 let wordsUnique = [
@@ -73,6 +97,28 @@ let wordsUnique = [
   'bring'
 ];
 
+function uniquifyArray(words) {
+  let indice = 0;
+  let indiceOk = 0;
+
+  while (indice < words.length) {
+
+    do {
+      indiceOk = words.indexOf(words[indice],indice+1)
+      if (indiceOk > 0) {
+        // Eliminamos el elemento
+        words.splice(indiceOk,1);
+        }
+    } while (indiceOk > 0);
+    
+    indice++;
+  }
+  if (words.length == 0)
+    return ;
+
+  return words;
+}
+
 // Finding Elements
 let wordsFind = [
   'machine',
@@ -84,6 +130,14 @@ let wordsFind = [
   'truth',
   'disobedience'
 ];
+
+function doesWordExist(words,word) {
+  for (let i=0; i<words.length; i++) {
+    if (words[i] === word)
+      return true;
+  }
+  return false;
+}
 
 // Counting Repetion
 let wordsCount = [
@@ -99,9 +153,24 @@ let wordsCount = [
   'disobedience',
   'matter'
 ];
+
+function howManyTimes(words,word) {
+  let contWords = 0;
+
+  for (let i=0; i<words.length; i++) {
+    if (words[i] === word)
+      contWords++;
+  }
+
+  if (words.length == 0)
+    return ;
+
+  return contWords;
+}
+
 // Bonus Quest
 
-let matrix = [
+/*let matrix = [
   [8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
   [49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0],
   [81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 3, 49, 13, 36, 65],
@@ -122,5 +191,216 @@ let matrix = [
   [20, 69, 36, 41, 72, 30, 23, 88, 34, 62, 99, 69, 82, 67, 59, 85, 74, 4, 36, 16],
   [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
+];*/
+
+let matrix = [
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
 ];
+
+function greatestProduct(matrix) {
+  let producto = 0;
+  let productoMax = 0;
+
+  // La matriz es n*n
+  
+  // Horizontal - filas
+  for (let i=0; i<matrix.length; i++) {
+    for (let y=0; y<matrix.length; y++) {
+
+      console.log(`Fila: ${i} Columna:${y} Valor:${matrix[i][y]}`);
+      
+      switch (matrix.length-1-y) {
+        case 0:
+          producto = matrix[i][y];
+          break;
+        case 1:
+          producto = matrix[i][y] * matrix[i][y+1];
+          break;
+        case 2:
+          producto = matrix[i][y] * matrix[i][y+1] * matrix[i][y+2];
+          break;
+        default:
+          producto = matrix[i][y] * matrix[i][y+1] * matrix[i][y+2] * matrix[i][y+3];
+      }
+
+      if (producto > productoMax)
+        productoMax = producto;
+    }
+  }
+  
+    // Vertical - columnas
+  for (let y=0; y<matrix.length; y++) {
+    for (let i=0; i<matrix.length; i++) {
+
+      console.log(`Fila: ${i} Columna:${y} Valor:${matrix[i][y]}`);
+      
+      switch (matrix.length-1-i) {
+        case 0:
+          producto = matrix[i][y];
+          break;
+        case 1:
+          producto = matrix[i][y] * matrix[i+1][y];
+          break;
+        case 2:
+          producto = matrix[i][y] * matrix[i+1][y] * matrix[i+2][y];
+          break;
+        default:
+          producto = matrix[i][y] * matrix[i+1][y] * matrix[i+2][y] * matrix[i+3][y];
+      }
+      
+      if (producto > productoMax)
+        productoMax = producto;
+    }
+  }
+  
+    
+  // Diagonal de arriba-derecha - abajo-izquierda
+  let x = 0;
+  let y = 0;
+    
+    // 1ª Parte Diagonal de arriba-derecha - abajo-izquierda
+    for (let i=0; i<matrix.length; i++) {
+      x = 0;
+      y = matrix.length-1-i;
+      for (let z=0; z<i+1; z++) {
+
+        console.log(`Fila: ${x} Columna:${y} Valor:${matrix[x][y]} Casos:${(i-z)}`);
+        
+        switch ((matrix.length-1)-y) {
+          case 0:
+            producto = matrix[x][y];
+            break;
+          case 1:
+            producto = matrix[x][y] * matrix[x+1][y+1];
+            break;
+          case 2:
+            producto = matrix[x][y] * matrix[x+1][y+1] * matrix[x+2][y+2];
+            break;
+          default:
+            producto = matrix[x][y] * matrix[x+1][y+1] * matrix[x+2][y+2] * matrix[x+3][y+3];
+        }
+        
+        x++;
+        y++;
+
+        if (producto > productoMax)
+          productoMax = producto;
+      }
+    }
+    
+    // 2ª Parte Diagonal de arriba-derecha - abajo-izquierda
+    for (let i=1; i<matrix.length; i++) {
+      x = i;
+      y = 0;
+      for (let z=i-1; z<matrix.length-1; z++) {
+
+        console.log(`Fila: ${x} Columna:${y} Valor:${matrix[x][y]} Casos:${(matrix.length-1)-z-1}`);
+        
+        switch ((matrix.length-1)-z-1) {
+          case 0:
+            producto = matrix[x][y];
+            break;
+          case 1:
+            producto = matrix[x][y] * matrix[x+1][y+1];
+            break;
+          case 2:
+            producto = matrix[x][y] * matrix[x+1][y+1] * matrix[x+2][y+2];
+            break;
+          default:
+            producto = matrix[x][y] * matrix[x+1][y+1] * matrix[x+2][y+2] * matrix[x+3][y+3];
+        }
+        
+        x++;
+        y++;
+
+        if (producto > productoMax)
+          productoMax = producto;
+      }
+    }
+
+    // Diagonal de arriba-izquirda - abajo-derecha
+    // 1ª Parte Diagonal de arriba-izquierda - abajo-derecha
+    for (let i=0; i<matrix.length; i++) {
+      x = 0;
+      y = i;
+      for (let z=0; z<i+1; z++) {
+
+        console.log(`Fila: ${x} Columna:${y} Valor:${matrix[x][y]} Casos:${(i-z)}`);
+        
+        switch (i-z) {
+          case 0:
+            producto = matrix[x][y];
+            break;
+          case 1:
+            producto = matrix[x][y] * matrix[x+1][y-1];
+            break;
+          case 2:
+            producto = matrix[x][y] * matrix[x+1][y-1] * matrix[x+2][y-2];
+            break;
+          default:
+            producto = matrix[x][y] * matrix[x+1][y-1] * matrix[x+2][y-2] * matrix[x+3][y-3];
+        }
+        
+        x++;
+        y--;
+
+        if (producto > productoMax)
+          productoMax = producto;
+      }
+    }
+    
+    // 2ª Parte Diagonal de arriba-izquierda - abajo-derecha
+    for (let i=1; i<matrix.length; i++) {
+      x = i;
+      y = matrix.length-1;
+      for (let z=i; z<=matrix.length-1; z++) {
+
+        console.log(`Fila: ${x} Columna:${y} Valor:${matrix[x][y]} Casos:${(matrix.length-1)-z}`);
+        
+        switch ((matrix.length-1)-z) {
+          case 0:
+            producto = matrix[x][y];
+            break;
+          case 1:
+            producto = matrix[x][y] * matrix[x+1][y-1];
+            break;
+          case 2:
+            producto = matrix[x][y] * matrix[x+1][y-1] * matrix[x+2][y-2];
+            break;
+          default:
+            producto = matrix[x][y] * matrix[x+1][y-1] * matrix[x+2][y-2] * matrix[x+3][y-3];
+        }
+        
+        x++;
+        y--;
+
+        if (producto > productoMax)
+          productoMax = producto;
+      }
+    }
+    
+  return productoMax;
+}
+
+
+console.log(greatestProduct(matrix));
 
