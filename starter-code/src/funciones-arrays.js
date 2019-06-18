@@ -19,21 +19,79 @@ let words = [
   'crackpot'
 ];
 
-function findLongestWord(words){
-  words.length();
+/*function findLongestWord(words = []){//le decimos que es una array
+ 
+ let larga ='';
+ let largo = 0;
+if ((words.length)){
+ for (i=0; i < words.length; i++){
+   //if(larga.length < words[i].length)
+   if(words[i].length > largo){
+      largo = words[i];
+      larga = words[i].length;
+   }
+  }
 }
+   else larga = undefined;
+console.log(larga.length);
+  
+}*/
+function findLongestWord(words) {
+  // definim variables
+  let maxlength = '';
+  let length = 0;
+  if ((words.length)) { // iniciem proces de cerca en cas que la matriu no estigui buida
+    for (let index = 0; index < words.length; index++) { // iniciem bucle per cercar, comparant, el mot amb el major numero de caracters
+      if (words[index].length > length) {
+        maxlength = words[index]; // guardem el mot
+        length = words[index].length; // guardem el tamany del mot
+      }
+    }
+  }
+  else maxlength = undefined; // en el cas que la matriu estigui buida
+  return maxlength; // retorna el mot
+}
+
+
+
 // Calculating a Sum
 
 let numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
-function sumArray(numbers){
-  numbers.reduce() / numbers.length();
+let sum = 0;
+  function sumArray(numbers){
+    if(numbers.length == 0)
+    return 0;//no va a ejecutar nada mas
+
+    let sumaNum = numbers.reduce((a, b) => b += a);
+    
+    return sumaNum;
+ 
   
 }
+console.log(sum);
 
 // Calculate the Average
-// como divido la suma anterior por ocho?
+
+
 let numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
+
+function averageNumbers(numbersAvg){
+  if(numbersAvg.length == 0)
+    return undefined;//no va a ejecutar nada mas
+  let sumaNum = numbersAvg.reduce((a, b) => b += a);
+  let avgNum = sumaNum / numbersAvg.length;
+  return avgNum;
+}
+
+//Jasmine me da error, console.log correcto en todas las operaciones
+//revisar
+/*BIBLIOGRAFIA
+
+https://www.jstips.co/en/javascript/array-average-and-median/
+
+https://codeburst.io/javascript-arrays-finding-the-minimum-maximum-sum-average-values-f02f1b0ce332
+*/
 
 // Array of Strings
 let wordsArr = [
@@ -48,10 +106,27 @@ let wordsArr = [
   'fuel',
   'palace'
 ];
+var cuantos = wordsArr.length;// me devuelve 10, numeros de elemntos del string
+//me devuelve 0, xk cojones tengo que utilizarlo? Preguntar Raul
+
 
 function averageWordLength(wordsArr){
- 
+  let cuantos = wordsArr.length;//mejor poner los datos dentro de las funciones
+  //asi se trabaja de manera local
+  let total = 0;
+  if(cuantos == 0)//si solo una sentencia, no necesita llaves
+  //else idem
+
+  return undefined;
+
+  for(i=0; i < cuantos; i++){
+    total+=wordsArr[i].length;
+  }
+  console.log(total);
+  return total / cuantos;
+
 }
+
 // Unique Arrays
 let wordsUnique = [
   'crab',
@@ -66,6 +141,18 @@ let wordsUnique = [
   'simple',
   'bring'
 ];
+//let findWords = wordsUnique.match(/i/g);
+
+
+function uniquifyArray([]){
+  
+ // let value = wordsUnique.match(/i/g);
+  return undefined;
+    
+}
+let newArr = wordsUnique.filter(uniquifyArray);
+
+console.log(newArr);
 
 // Finding Elements
 let wordsFind = [
