@@ -35,8 +35,8 @@ console.log(largeWord(words));
 const largeWord2 = (arr) => arr.reduce((a, b) => (a.length > b.length ? a : b), '');
 console.log(largeWord2(words));
 
-// loop (not mine! Jun 2019)
-function findLongestWord(words) {
+// loop (not mine! Jun 2019) Shame on me! Dani's response!!!
+/*function findLongestWord(words) {
   // definim variables
   let maxlength = '';
   let length = 0;
@@ -52,7 +52,7 @@ function findLongestWord(words) {
   return maxlength; // retorna el mot
 }
 console.log(findLongestWord(words));
-
+*/
 
 
 // Calculating a Sum
