@@ -1,4 +1,6 @@
 // Find the maximum
+/* Junio 2019
+
 function maxOfTwoNumbers(n1,n2){
     
   if(n1>n2){
@@ -6,7 +8,11 @@ function maxOfTwoNumbers(n1,n2){
   }else{
     return n2;
   }
-};
+}; */
+
+//Feb 2020
+const maxOfTwoNumbers = (n1, n2) => n1 > n2 ? n1 : n2;
+console.log(maxOfTwoNumbers(3, 2));
 
 // Finding Longest Word
 let words = [
@@ -18,24 +24,16 @@ let words = [
   'orchard',
   'crackpot'
 ];
+//Feb 2020
+// sort 
+const largeWord = (arr) => arr.sort((a, b) => b.length - a.length)[0];
+console.log(largeWord(words));
 
-/*function findLongestWord(words = []){//le decimos que es una array
- 
- let larga ='';
- let largo = 0;
-if ((words.length)){
- for (i=0; i < words.length; i++){
-   //if(larga.length < words[i].length)
-   if(words[i].length > largo){
-      largo = words[i];
-      larga = words[i].length;
-   }
-  }
-}
-   else larga = undefined;
-console.log(larga.length);
-  
-}*/
+//reduce
+const largeWord2 = (arr) => arr.reduce((a, b) => (a.length > b.length ? a : b), '');
+console.log(largeWord2(words));
+
+// loop (not mine! Jun 2019)
 function findLongestWord(words) {
   // definim variables
   let maxlength = '';
@@ -51,46 +49,31 @@ function findLongestWord(words) {
   else maxlength = undefined; // en el cas que la matriu estigui buida
   return maxlength; // retorna el mot
 }
+console.log(findLongestWord(words));
 
 
 
 // Calculating a Sum
 
 let numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
-let sum = 0;
-  function sumArray(numbers){
-    if(numbers.length == 0)
-    return 0;//no va a ejecutar nada mas
-
-    let sumaNum = numbers.reduce((a, b) => b += a);
-    
-    return sumaNum;
- 
-  
-}
-console.log(sum);
+//Feb 2020 reduce Method
+const sumArray = (num) => num.reduce((a, b) => a + b, 0);// cero para trabajar con arrays vacias!!
+console.log(sumArray(numbers));
 
 // Calculate the Average
 
-
 let numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
+//Feb 2020 Reduce
 
+const averageNumbers = (num) => num.reduce((a, b) => a + b, 0) / num.length;
+console.log(averageNumbers(numbersAvg));
 
-function averageNumbers(numbersAvg){
-  if(numbersAvg.length == 0)
-    return undefined;//no va a ejecutar nada mas
-  let sumaNum = numbersAvg.reduce((a, b) => b += a);
-  let avgNum = sumaNum / numbersAvg.length;
-  return avgNum;
-}
-
-//Jasmine me da error, console.log correcto en todas las operaciones
-//revisar
 /*BIBLIOGRAFIA
 
 https://www.jstips.co/en/javascript/array-average-and-median/
 
 https://codeburst.io/javascript-arrays-finding-the-minimum-maximum-sum-average-values-f02f1b0ce332
+
 */
 
 // Array of Strings
@@ -106,12 +89,10 @@ let wordsArr = [
   'fuel',
   'palace'
 ];
-var cuantos = wordsArr.length;// me devuelve 10, numeros de elemntos del string
-//me devuelve 0, xk cojones tengo que utilizarlo? Preguntar Raul
 
-
-function averageWordLength(wordsArr){
-  let cuantos = wordsArr.length;//mejor poner los datos dentro de las funciones
+//Loop (Junio 2019)
+function averageWordLength(arr){
+  let cuantos = arr.length;//mejor poner los datos dentro de las funciones
   //asi se trabaja de manera local
   let total = 0;
   if(cuantos == 0)//si solo una sentencia, no necesita llaves
@@ -120,12 +101,21 @@ function averageWordLength(wordsArr){
   return undefined;
 
   for(i=0; i < cuantos; i++){
-    total+=wordsArr[i].length;
+    total += arr[i].length;
   }
   console.log(total);
   return total / cuantos;
 
-}
+};
+console.log(averageWordLength(wordsArr));
+
+//reduce (Feb 2020)
+const averageWordLength1 = (arr) => arr.reduce((a, b) => (a + b.length), 0) / arr.length;
+console.log(averageWordLength1(wordsArr));
+
+//join (Feb 2020)
+const averageWordLength2 = (arr) => arr.join('').length / arr.length;
+console.log(averageWordLength2(wordsArr));
 
 // Unique Arrays
 let wordsUnique = [
@@ -142,18 +132,27 @@ let wordsUnique = [
   'bring'
 ];
 //let findWords = wordsUnique.match(/i/g);
+// Loop (Junio 2019)
+function uniquifyArray2(arr){
+  let unique = {};
+    arr.forEach((i) =>{
+      if(!unique[i]){
+        unique[i] = true;
+      }
+    });
+return Object.keys(unique);
+ };
+console.log(uniquifyArray2(wordsUnique));
 
+//Set (Feb 2020)
+const uniquifyArray = (arr) => [...new Set(arr)];
+console.log(uniquifyArray(wordsUnique));
 
-function uniquifyArray([]){
-  
- // let value = wordsUnique.match(/i/g);
-  return undefined;
-    
-}
-let newArr = wordsUnique.filter(uniquifyArray);
+//Filter
+const uniquifyArray1 = (arr) => arr.filter((a, i) => arr.indexOf(a) === i);
+console.log(uniquifyArray1(wordsUnique));
 
-console.log(newArr);
-
+//
 // Finding Elements
 let wordsFind = [
   'machine',
@@ -165,6 +164,11 @@ let wordsFind = [
   'truth',
   'disobedience'
 ];
+
+//includes
+const doesWordExist = (word) => wordsFind.includes(word);
+console.log(doesWordExist('truth'));
+console.log(doesWordExist('verdad'));
 
 // Counting Repetion
 let wordsCount = [
@@ -180,6 +184,37 @@ let wordsCount = [
   'disobedience',
   'matter'
 ];
+/**
+ * https://stackoverflow.com/questions/840781/get-all-non-unique-values-i-e-duplicate-more-than-one-occurrence-in-an-array
+ */
+//cuantas veces está repetida la palabra en el array
+//loop
+let word1 = [];
+function howManyTimes(arr, val){
+  let count = '';
+  arr.forEach((v) => (v === val && count++));
+  return count;
+};
+console.log(howManyTimes(wordsCount, 'matter'));
+
+//Filter
+const howManyTimes1 = (arr, val) => arr.filter((e) => (e === val)).length;
+console.log(howManyTimes1(wordsCount, 'matter'));
+
+//to know how many times ALL the elements are repeated
+
+/*
+ * https://gist.github.com/ralphcrisostomo/3141412
+ */
+
+//remember, in reduce a => accumulator and b => currentValue!!!
+const howManyTimes2 = (arr) => arr.reduce((a, b) => ((a[a.findIndex(d => d.element === b)] || a[a.push({element: b, count:0})-1]).count++, a), []);
+console.log(howManyTimes2(wordsCount));
+
+//new Map. Liked because offers me key=> value! =>returns object
+const howManyTimes3 = (arr) => arr.reduce((a, b) => a.set(b, a.get(b) + 1 || 1), new Map);
+console.log(howManyTimes3(wordsCount));
+
 // Bonus Quest
 
 let matrix = [
