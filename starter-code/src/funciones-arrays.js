@@ -5,10 +5,17 @@ function maxOfTwoNumbers(n1,n2){
     
   if(n1>n2){
     return n1;
+<<<<<<< HEAD
   }else if(n1 === n2){
     return n1;
   }else{
     retun n2;
+=======
+  }else if( n1 === n2){
+    return n1;
+  }else{
+  return n2;
+>>>>>>> 306a85dbabcfbb29544dc752fe66e4eb850e377c
   }
 }; */
 
@@ -37,8 +44,8 @@ console.log(largeWord(words));
 const largeWord2 = (arr) => arr.reduce((a, b) => (a.length > b.length ? a : b), '');
 console.log(largeWord2(words));
 
-// loop (not mine! Jun 2019)
-function findLongestWord(words) {
+// loop (not mine! Jun 2019) Shame on me! Dani's response!!!
+/*function findLongestWord(words) {
   // definim variables
   let maxlength = '';
   let length = 0;
@@ -54,7 +61,7 @@ function findLongestWord(words) {
   return maxlength; // retorna el mot
 }
 console.log(findLongestWord(words));
-
+*/
 
 
 // Calculating a Sum
