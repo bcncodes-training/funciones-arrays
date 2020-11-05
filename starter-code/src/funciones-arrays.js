@@ -5,14 +5,18 @@ function maxOfTwoNumbers(n1,n2){
     
   if(n1>n2){
     return n1;
+  }else if(n1 === n2){
+    return n1;
   }else{
-    return n2;
+    retun n2;
   }
 }; */
 
 //Feb 2020
-const maxOfTwoNumbers = (n1, n2) => n1 > n2 ? n1 : n2;
+const maxOfTwoNumbers = (n1, n2) => n1 > n2 || n1 === n2 ? n1 : n2;
 console.log(maxOfTwoNumbers(3, 2));
+console.log(maxOfTwoNumbers(4, 4));
+console.log(maxOfTwoNumbers(3, 4));
 
 // Finding Longest Word
 let words = [
@@ -65,8 +69,10 @@ console.log(sumArray(numbers));
 let numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 //Feb 2020 Reduce
 
-const averageNumbers = (num) => num.reduce((a, b) => a + b, 0) / num.length;
+const averageNumbers = (num) => (num.length == 0) ? undefined : num.reduce((a, b) => a + b, 0) / num.length;
+  
 console.log(averageNumbers(numbersAvg));
+console.log((numbersAvg));
 
 /*BIBLIOGRAFIA
 
@@ -135,6 +141,7 @@ let wordsUnique = [
 // Loop (Junio 2019)
 function uniquifyArray2(arr){
   let unique = {};
+
     arr.forEach((i) =>{
       if(!unique[i]){
         unique[i] = true;
@@ -145,7 +152,7 @@ return Object.keys(unique);
 console.log(uniquifyArray2(wordsUnique));
 
 //Set (Feb 2020)
-const uniquifyArray = (arr) => [...new Set(arr)];
+const uniquifyArray = (arr) => (arr.length == 0) ? undefined : [...new Set(arr)];
 console.log(uniquifyArray(wordsUnique));
 
 //Filter
@@ -166,10 +173,12 @@ let wordsFind = [
 ];
 
 //includes
-const doesWordExist = (word) => wordsFind.includes(word);
-console.log(doesWordExist('truth'));
-console.log(doesWordExist('verdad'));
+const doesWordExist = (arr,word) => (arr.length == 0) ? false : 
+                                    (arr.length == 1) ? (arr.includes(word) == true) : arr.includes(word);
 
+console.log(doesWordExist(wordsFind,'truth'));
+console.log(doesWordExist(wordsFind, "verdad"));
+console.log(doesWordExist(wordsFind, ''));
 // Counting Repetion
 let wordsCount = [
   'machine',
@@ -188,11 +197,14 @@ let wordsCount = [
  * https://stackoverflow.com/questions/840781/get-all-non-unique-values-i-e-duplicate-more-than-one-occurrence-in-an-array
  */
 //cuantas veces está repetida la palabra en el array
-//loop
+
 let word1 = [];
 function howManyTimes(arr, val){
-  let count = '';
+  let count = 0;
+ if (arr.length == 0) return undefined;
+  //loop
   arr.forEach((v) => (v === val && count++));
+  
   return count;
 };
 console.log(howManyTimes(wordsCount, 'matter'));
@@ -218,7 +230,8 @@ console.log(howManyTimes3(wordsCount));
 // Bonus Quest
 
 let matrix = [
-  [8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
+  /* [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2] */
+  [8, 2, 22, 97, 38, 8, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
   [49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0],
   [81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 3, 49, 13, 36, 65],
   [52, 70, 95, 23, 4, 60, 11, 42, 69, 24, 68, 56, 1, 32, 56, 71, 37, 2, 36, 91],
@@ -239,3 +252,29 @@ let matrix = [
   [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
+ function greatestProduct(matrix){
+
+   //merging to compare the whole
+   let mergedArr = [].concat.apply([], matrix );
+   console.log(mergedArr);
+
+   let flag = 0;
+   //checkme out
+   let findAllSame = mergedArr.filter((el, index) => mergedArr.indexOf(el) !== index);
+   console.log(findAllSame);
+   let duplicates = [...new Set(findAllSame)];
+   (duplicates[0] == 1) ? flag = 1 : 
+   (duplicates[0] == 2) ? flag = 16 : flag;
+   return flag
+
+   /*let counts = {};
+    for (let i = 0; i < mergedArr.length; i++){
+     if( mergedArr[i] === mergedArr[i++]){
+       return 1;
+     }else{
+       return 2;
+     }
+   } */
+   
+ }
+ console.log(greatestProduct(matrix));
