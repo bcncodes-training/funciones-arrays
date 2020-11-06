@@ -233,3 +233,6 @@ let matrix = [
   [01,70,54,71,83,51,54,69,16,92,33,48,61,43,52,01,89,19,67,48],
 ];
 ```
+### Soluciones Roberto
+
+Realizado una refactorización del código que Miquel y yo realizamos en Julio. NO PASA TODOS LOS TEST DE JASMINE!!! pero todas las funciones cumplen su cometido!!

@@ -1,4 +1,25 @@
 // Find the maximum
+//Junio 2019
+
+function maxOfTwoNumbers(n1,n2){
+
+  //container number
+  //one ring to rule them all
+  let num = 0;
+
+  if(n1>n2){
+    num = n1;
+  }else if(n1 === n2){
+    num = n1;
+  }else{
+    num = n2;
+  }
+  return num;
+};
+
+console.log(maxOfTwoNumbers(3, 2));
+console.log(maxOfTwoNumbers(4, 4));
+console.log(maxOfTwoNumbers(3, 4));
 
 // Finding Longest Word
 let words = [
@@ -11,13 +32,82 @@ let words = [
   'crackpot'
 ];
 
-// Calculating a Sum
+// loop (not mine! Jun 2019)
+function findLongestWord(words) {
+  
+  //container
+  let maxlength   = '';
+  //contador
+  let lengthWords = 0;
+//iniciem proces de cerca en cas que la matriu no estigui buida
+  if ((words.length)) { 
+    // iniciem bucle per cercar, comparant numero de caracters
+    for (let i = 0; i < words.length; i++) { 
+      //contador a cero
+      // la primera paraula entra dins al ser + gran que cero
+      //a partir de la segona es compara la llargaria del mot dintre del arr amb el guardat al container
+      //si es mes llarga...
+      if (words[i].length > lengthWords) {
+        // guardem el mot
+        maxlength = words[i]; 
+        // guardem el num del tamany del mot
+        lengthWords = words[i].length; 
+      }
+    }
+  } else {
+    // en el cas que la matriu estigui buida
+    maxlength = undefined; 
+  }
 
+  // retorna el mot
+  return maxlength; 
+}
+console.log(findLongestWord(words));
+
+// Calculating a Sum my OwnOne
 let numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
-// Calculate the Average
+function sumArray(num){
+  //container
+  let container = 0;
 
+  num.forEach((e) => {
+    container += (e);
+  });
+  console.log(`${container} is the total sum of the array`);
+  return container;
+}
+console.log(sumArray(numbers));
+
+
+// Calculate the Average
 let numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
+
+function averageNumbers(num){
+  //container
+  let container = 0;
+//My own. Not a one liner, but my own still
+  num.forEach((e) => {
+    container += (e);
+  });
+  //we make here the avg
+  container = container / num.length;
+  //the answer Jasmine wants to hear
+  (num.length === 0) ? container = undefined : container;
+
+  console.log(`${container} is the average of the array`);
+  return container;
+}
+
+console.log(averageNumbers(numbersAvg));
+
+/*BIBLIOGRAFIA
+
+https://www.jstips.co/en/javascript/array-average-and-median/
+
+https://codeburst.io/javascript-arrays-finding-the-minimum-maximum-sum-average-values-f02f1b0ce332
+
+*/
 
 // Array of Strings
 let wordsArr = [
@@ -32,6 +122,30 @@ let wordsArr = [
   'fuel',
   'palace'
 ];
+
+//Loop (Junio 2019)
+function averageWordLength(arr){
+ //dear container of mine
+  let total = 0;
+
+  if(arr.length == 0){
+//aprende a andar, a frenar y luego corre!
+    return undefined;
+  }
+  //itera sobre todos e del arr de str
+  for(i=0; i < arr.length; i++){
+
+    //almacenamos todas las palabras
+    total += arr[i].length;
+  }
+  console.log(`${total} es num total de palabras`);
+
+  //sacamos media
+  total =  total / arr.length;
+
+  return total;
+};
+console.log(averageWordLength(wordsArr));
 
 // Unique Arrays
 let wordsUnique = [
@@ -48,6 +162,10 @@ let wordsUnique = [
   'bring'
 ];
 
+//Set (Feb 2020)
+const uniquifyArray = (arr) => (arr.length == 0) ? undefined : [...new Set(arr)];
+console.log(uniquifyArray(wordsUnique));
+
 // Finding Elements
 let wordsFind = [
   'machine',
@@ -59,6 +177,14 @@ let wordsFind = [
   'truth',
   'disobedience'
 ];
+
+//includes, my own. Love ternaries!
+const doesWordExist = (arr,word) => (arr.length == 0) ? false : 
+                                    (arr.length == 1) ? (arr.includes(word) == true) : arr.includes(word);
+
+console.log(doesWordExist(wordsFind,'truth'));
+console.log(doesWordExist(wordsFind, "verdad"));
+console.log(doesWordExist(wordsFind, ''));
 
 // Counting Repetion
 let wordsCount = [
@@ -74,10 +200,31 @@ let wordsCount = [
   'disobedience',
   'matter'
 ];
+/**
+ * https://stackoverflow.com/questions/840781/get-all-non-unique-values-i-e-duplicate-more-than-one-occurrence-in-an-array
+ */
+//cuantas veces está repetida la palabra en el array
+
+let word1 = [];
+function howManyTimes(arr, val){
+  let count = 0;
+ if (arr.length == 0) return undefined;
+  //loop
+  arr.forEach((v) => (v === val && count++));
+  
+  return count;
+};
+console.log(howManyTimes(wordsCount, 'matter'));
+
+/*
+ * https://gist.github.com/ralphcrisostomo/3141412
+ */
+
 // Bonus Quest
 
 let matrix = [
-  [8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
+  
+  [8, 2, 22, 97, 38, 8, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
   [49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0],
   [81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 3, 49, 13, 36, 65],
   [52, 70, 95, 23, 4, 60, 11, 42, 69, 24, 68, 56, 1, 32, 56, 71, 37, 2, 36, 91],
@@ -98,3 +245,24 @@ let matrix = [
   [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
+
+ function greatestProduct(matrix, col, row){
+
+   //merging to compare the whole
+   let mergedArr = [].concat.apply([], matrix );
+   console.log(mergedArr);
+//!important 
+/**Cuidado Robby con la idea. Coviertes los 400 num en un solo arr
+ * no está mal para comparar la primera pregunta (1), pero no sirve para horizontal | vertical | diagonal!
+ */
+let container = 0;
+//productAll
+let greatProductOfOne = mergedArr.reduce((a, b) => a * b);
+
+(greatProductOfOne == 1) ? container = 1 : container = greatProductOfOne;
+console.log(container);
+
+return container;
+ }
+ console.log(greatestProduct(matrix,0, 3));
+
