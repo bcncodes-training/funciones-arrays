@@ -1,19 +1,22 @@
 // Find the maximum
-/* Junio 2019
+//Junio 2019
 
 function maxOfTwoNumbers(n1,n2){
-    
-  if(n1>n2){
-    return n1;
-  }else if(n1 === n2){
-    return n1;
-  }else{
-    retun n2;
-  }
-}; */
 
-//Feb 2020
-const maxOfTwoNumbers = (n1, n2) => (n1 > n2 || n1 === n2) ? n1 : n2;
+  //container number
+  //one ring to rule them all
+  let num = 0;
+
+  if(n1>n2){
+    num = n1;
+  }else if(n1 === n2){
+    num = n1;
+  }else{
+    num = n2;
+  }
+  return num;
+};
+
 console.log(maxOfTwoNumbers(3, 2));
 console.log(maxOfTwoNumbers(4, 4));
 console.log(maxOfTwoNumbers(3, 4));
@@ -28,56 +31,75 @@ let words = [
   'orchard',
   'crackpot'
 ];
-//Feb 2020
-// sort 
-const largeWord = (arr) => arr.sort((a, b) => b.length - a.length)[0];
-console.log(largeWord(words));
-
-//reduce
-const largeWord2 = (arr) => arr.reduce((a, b) => (a.length > b.length ? a : b), '');
-console.log(largeWord2(words));
 
 // loop (not mine! Jun 2019)
 function findLongestWord(words) {
-  // definim variables
+  
+  //container
   let maxlength   = '';
+  //contador
   let lengthWords = 0;
-  if ((words.length)) { // iniciem proces de cerca en cas que la matriu no estigui buida
-
-    for (let index = 0; index < words.length; index++) { // iniciem bucle per cercar, comparant numero de caracters
-
-      if (words[index].length > lengthWords) {
-
-        maxlength = words[index]; // guardem el mot
-
-        lengthWords = words[index].length; // guardem el num del tamany del mot
+//iniciem proces de cerca en cas que la matriu no estigui buida
+  if ((words.length)) { 
+    // iniciem bucle per cercar, comparant numero de caracters
+    for (let i = 0; i < words.length; i++) { 
+      //contador a cero
+      // la primera paraula entra dins al ser + gran que cero
+      //a partir de la segona es compara la llargaria del mot dintre del arr amb el guardat al container
+      //si es mes llarga...
+      if (words[i].length > lengthWords) {
+        // guardem el mot
+        maxlength = words[i]; 
+        // guardem el num del tamany del mot
+        lengthWords = words[i].length; 
       }
     }
   } else {
-    maxlength = undefined; // en el cas que la matriu estigui buida
+    // en el cas que la matriu estigui buida
+    maxlength = undefined; 
   }
-  return maxlength; // retorna el mot
+
+  // retorna el mot
+  return maxlength; 
 }
 console.log(findLongestWord(words));
 
-
-
-// Calculating a Sum
-
+// Calculating a Sum my OwnOne
 let numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
-//Feb 2020 reduce Method
-const sumArray = (num) => num.reduce((a, b) => a + b, 0);// cero para trabajar con arrays vacias!!
+
+function sumArray(num){
+  //container
+  let container = 0;
+
+  num.forEach((e) => {
+    container += (e);
+  });
+  console.log(`${container} is the total sum of the array`);
+  return container;
+}
 console.log(sumArray(numbers));
 
+
 // Calculate the Average
-
 let numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
-//Feb 2020 Reduce
 
-const averageNumbers = (num) => (num.length == 0) ? undefined : num.reduce((a, b) => a + b, 0) / num.length;
-  
+function averageNumbers(num){
+  //container
+  let container = 0;
+//My own. Not a one liner, but my own still
+  num.forEach((e) => {
+    container += (e);
+  });
+  //we make here the avg
+  container = container / num.length;
+  //the answer Jasmine wants to hear
+  (num.length === 0) ? container = undefined : container;
+
+  console.log(`${container} is the average of the array`);
+  return container;
+}
+
 console.log(averageNumbers(numbersAvg));
-console.log((numbersAvg));
 
 /*BIBLIOGRAFIA
 
@@ -103,8 +125,9 @@ let wordsArr = [
 
 //Loop (Junio 2019)
 function averageWordLength(arr){
- 
+ //dear container of mine
   let total = 0;
+
   if(arr.length == 0){
 //aprende a andar, a frenar y luego corre!
     return undefined;
@@ -124,14 +147,6 @@ function averageWordLength(arr){
 };
 console.log(averageWordLength(wordsArr));
 
-//reduce (Feb 2020)
-const averageWordLength1 = (arr) => arr.reduce((a, b) => (a + b.length), 0) / arr.length;
-console.log(averageWordLength1(wordsArr));
-
-//join (Feb 2020)
-const averageWordLength2 = (arr) => arr.join('').length / arr.length;
-console.log(averageWordLength2(wordsArr));
-
 // Unique Arrays
 let wordsUnique = [
   'crab',
@@ -146,33 +161,11 @@ let wordsUnique = [
   'simple',
   'bring'
 ];
-//let findWords = wordsUnique.match(/i/g);
-// Loop (Junio 2019)
-function uniquifyArray2(arr){
-  //container
-  let unique = {};
-
-    //iteracion
-    arr.forEach((i) =>{
-      //si no coincides con nada dentro del obj
-      if(!unique[i]){
-        //para dentro!
-        unique[i] = true;
-      }
-    });
-return Object.keys(unique);
- };
-console.log(uniquifyArray2(wordsUnique));
 
 //Set (Feb 2020)
 const uniquifyArray = (arr) => (arr.length == 0) ? undefined : [...new Set(arr)];
 console.log(uniquifyArray(wordsUnique));
 
-//Filter
-const uniquifyArray1 = (arr) => arr.filter((a, i) => arr.indexOf(a) === i);
-console.log(uniquifyArray1(wordsUnique));
-
-//
 // Finding Elements
 let wordsFind = [
   'machine',
@@ -185,13 +178,14 @@ let wordsFind = [
   'disobedience'
 ];
 
-//includes
+//includes, my own. Love ternaries!
 const doesWordExist = (arr,word) => (arr.length == 0) ? false : 
                                     (arr.length == 1) ? (arr.includes(word) == true) : arr.includes(word);
 
 console.log(doesWordExist(wordsFind,'truth'));
 console.log(doesWordExist(wordsFind, "verdad"));
 console.log(doesWordExist(wordsFind, ''));
+
 // Counting Repetion
 let wordsCount = [
   'machine',
@@ -222,23 +216,9 @@ function howManyTimes(arr, val){
 };
 console.log(howManyTimes(wordsCount, 'matter'));
 
-//Filter
-const howManyTimes1 = (arr, val) => arr.filter((e) => (e === val)).length;
-console.log(howManyTimes1(wordsCount, 'matter'));
-
-//to know how many times ALL the elements are repeated
-
 /*
  * https://gist.github.com/ralphcrisostomo/3141412
  */
-
-//remember, in reduce a => accumulator and b => currentValue!!!
-const howManyTimes2 = (arr) => arr.reduce((a, b) => ((a[a.findIndex(d => d.element === b)] || a[a.push({element: b, count:0})-1]).count++, a), []);
-console.log(howManyTimes2(wordsCount));
-
-//new Map. Liked because offers me key=> value! =>returns object
-const howManyTimes3 = (arr) => arr.reduce((a, b) => a.set(b, a.get(b) + 1 || 1), new Map);
-console.log(howManyTimes3(wordsCount));
 
 // Bonus Quest
 
@@ -265,6 +245,7 @@ let matrix = [
   [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
+
  function greatestProduct(matrix, col, row){
 
    //merging to compare the whole
