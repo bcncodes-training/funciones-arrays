@@ -223,7 +223,7 @@ console.log(howManyTimes(wordsCount, 'matter'));
 // Bonus Quest
 
 let matrix = [
-  /* [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2] */
+  
   [8, 2, 22, 97, 38, 8, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
   [49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0],
   [81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 3, 49, 13, 36, 65],
@@ -255,31 +255,14 @@ let matrix = [
 /**Cuidado Robby con la idea. Coviertes los 400 num en un solo arr
  * no está mal para comparar la primera pregunta (1), pero no sirve para horizontal | vertical | diagonal!
  */
-   let flag = 0;
-   //checkme out
-   let findAllSame = mergedArr.filter((el, index) => mergedArr.indexOf(el) !== index);
-   console.log(findAllSame);
-//como optmizo esto si el matrix es de dos millones de entradas!?
-   let duplicates = [...new Set(findAllSame)];
-   (duplicates[0] == 1) ? flag = 1 : 
-   (duplicates[0] == 2) ? flag = 16 : flag;
+let container = 0;
+//productAll
+let greatProductOfOne = mergedArr.reduce((a, b) => a * b);
 
-  console.log(flag);
-// Recuerda a Joan, solo una salida y no breaks!
-//columns
-let column = [];
-for (let i = 0; i < matrix.length; i++){
-  column.push(matrix[i][col]);
-}
-   console.log(column);
+(greatProductOfOne == 1) ? container = 1 : container = greatProductOfOne;
+console.log(container);
 
-let verticalNum = matrix.map((n) => n[col]);
-console.log(verticalNum);
-   
-//rows
-let horizonNum = matrix[row].map((n) => n);
-console.log(horizonNum);
-
+return container;
  }
- console.log(greatestProduct(matrix,0, 5));
+ console.log(greatestProduct(matrix,0, 3));
 
