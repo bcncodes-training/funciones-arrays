@@ -5,17 +5,10 @@ function maxOfTwoNumbers(n1,n2){
     
   if(n1>n2){
     return n1;
-<<<<<<< HEAD
   }else if(n1 === n2){
     return n1;
   }else{
     retun n2;
-=======
-  }else if( n1 === n2){
-    return n1;
-  }else{
-  return n2;
->>>>>>> 306a85dbabcfbb29544dc752fe66e4eb850e377c
   }
 }; */
 
@@ -44,24 +37,29 @@ console.log(largeWord(words));
 const largeWord2 = (arr) => arr.reduce((a, b) => (a.length > b.length ? a : b), '');
 console.log(largeWord2(words));
 
-// loop (not mine! Jun 2019) Shame on me! Dani's response!!!
-/*function findLongestWord(words) {
+// loop (not mine! Jun 2019)
+function findLongestWord(words) {
   // definim variables
-  let maxlength = '';
-  let length = 0;
+  let maxlength   = '';
+  let lengthWords = 0;
   if ((words.length)) { // iniciem proces de cerca en cas que la matriu no estigui buida
-    for (let index = 0; index < words.length; index++) { // iniciem bucle per cercar, comparant, el mot amb el major numero de caracters
-      if (words[index].length > length) {
+
+    for (let index = 0; index < words.length; index++) { // iniciem bucle per cercar, comparant numero de caracters
+
+      if (words[index].length > lengthWords) {
+
         maxlength = words[index]; // guardem el mot
-        length = words[index].length; // guardem el tamany del mot
+
+        lengthWords = words[index].length; // guardem el num del tamany del mot
       }
     }
+  } else {
+    maxlength = undefined; // en el cas que la matriu estigui buida
   }
-  else maxlength = undefined; // en el cas que la matriu estigui buida
   return maxlength; // retorna el mot
 }
 console.log(findLongestWord(words));
-*/
+
 
 
 // Calculating a Sum
@@ -259,29 +257,40 @@ let matrix = [
   [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
- function greatestProduct(matrix){
+ function greatestProduct(matrix, col, row){
 
    //merging to compare the whole
    let mergedArr = [].concat.apply([], matrix );
    console.log(mergedArr);
-
+//!important 
+/**Cuidado Robby con la idea. Coviertes los 400 num en un solo arr
+ * no está mal para comparar la primera pregunta (1), pero no sirve para horizontal | vertical | diagonal!
+ */
    let flag = 0;
    //checkme out
    let findAllSame = mergedArr.filter((el, index) => mergedArr.indexOf(el) !== index);
    console.log(findAllSame);
+//como optmizo esto si el matrix es de dos millones de entradas!?
    let duplicates = [...new Set(findAllSame)];
    (duplicates[0] == 1) ? flag = 1 : 
    (duplicates[0] == 2) ? flag = 16 : flag;
-   return flag
 
-   /*let counts = {};
-    for (let i = 0; i < mergedArr.length; i++){
-     if( mergedArr[i] === mergedArr[i++]){
-       return 1;
-     }else{
-       return 2;
-     }
-   } */
+  console.log(flag);
+// Recuerda a Joan, solo una salida y no breaks!
+//columns
+let column = [];
+for (let i = 0; i < matrix.length; i++){
+  column.push(matrix[i][col]);
+}
+   console.log(column);
+
+let verticalNum = matrix.map((n) => n[col]);
+console.log(verticalNum);
    
+//rows
+let horizonNum = matrix[row].map((n) => n);
+console.log(horizonNum);
+
  }
- console.log(greatestProduct(matrix));
+ console.log(greatestProduct(matrix,0, 5));
+
