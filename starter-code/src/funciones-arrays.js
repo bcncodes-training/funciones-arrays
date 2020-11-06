@@ -13,7 +13,7 @@ function maxOfTwoNumbers(n1,n2){
 }; */
 
 //Feb 2020
-const maxOfTwoNumbers = (n1, n2) => n1 > n2 || n1 === n2 ? n1 : n2;
+const maxOfTwoNumbers = (n1, n2) => (n1 > n2 || n1 === n2) ? n1 : n2;
 console.log(maxOfTwoNumbers(3, 2));
 console.log(maxOfTwoNumbers(4, 4));
 console.log(maxOfTwoNumbers(3, 4));
@@ -103,20 +103,24 @@ let wordsArr = [
 
 //Loop (Junio 2019)
 function averageWordLength(arr){
-  let cuantos = arr.length;//mejor poner los datos dentro de las funciones
-  //asi se trabaja de manera local
+ 
   let total = 0;
-  if(cuantos == 0)//si solo una sentencia, no necesita llaves
-  //else idem
+  if(arr.length == 0){
+//aprende a andar, a frenar y luego corre!
+    return undefined;
+  }
+  //itera sobre todos e del arr de str
+  for(i=0; i < arr.length; i++){
 
-  return undefined;
-
-  for(i=0; i < cuantos; i++){
+    //almacenamos todas las palabras
     total += arr[i].length;
   }
-  console.log(total);
-  return total / cuantos;
+  console.log(`${total} es num total de palabras`);
 
+  //sacamos media
+  total =  total / arr.length;
+
+  return total;
 };
 console.log(averageWordLength(wordsArr));
 
@@ -145,10 +149,14 @@ let wordsUnique = [
 //let findWords = wordsUnique.match(/i/g);
 // Loop (Junio 2019)
 function uniquifyArray2(arr){
+  //container
   let unique = {};
 
+    //iteracion
     arr.forEach((i) =>{
+      //si no coincides con nada dentro del obj
       if(!unique[i]){
+        //para dentro!
         unique[i] = true;
       }
     });
